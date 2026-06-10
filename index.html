@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar VIP 8 Ball Pool</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0b0c10;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 15px;
+            margin: 0;
+        }
+
+        /* Header Container untuk Judul & Menu Titik Tiga */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        /* Tombol Titik Tiga */
+        .menu-titik-tiga {
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 5px 10px;
+            user-select: none;
+            margin-left: auto; /* Memastikan titik tiga menempel di paling kanan */
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #161822;
+            border: 1px solid #232635;
+            border-radius: 8px;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .dropdown-menu a {
+            color: #ffffff;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            border-bottom: 1px solid #1e202c;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:active {
+            background-color: #1f1429;
+            color: #df42da;
+        }
+
+        /* Kotak Informasi Atas */
+        .info-box {
+            background-color: #12131a;
+            border: 1px solid #1e202c;
+            border-radius: 12px;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .info-box h1 {
+            font-size: 18px;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+        }
+
+        .info-box h1 span {
+            color: #c92bc4;
+        }
+
+        .fitur-tags {
+            font-size: 10px;
+            color: #8a8d98;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .platform-tag {
+            display: inline-block;
+            background-color: #201429;
+            border: 1px solid #4a1d63;
+            color: #e246dd;
+            padding: 6px 24px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Container Pembungkus Semua Kartu */
+        .produk-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Kartu Produk */
+        .kartu-produk {
+            background-color: #12131a;
+            border: 1px solid #1e202c;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Desain Gambar Box */
+        .gambar-box {
+            height: 180px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .badge-terlaris {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #ffcc00;
+            color: #000000;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+
+        .bola-hitam {
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle at 30% 30%, #3a3a3a, #000000);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .lingkaran-putih {
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .angka-8 {
+            color: #000000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .detail-box {
+            padding: 20px 15px;
+            text-align: center;
+            background-color: #12131a;
+            border-top: 1px solid #1e202c;
+        }
+
+        .tag-android {
+            font-size: 10px;
+            color: #00ff88;
+            margin: 0 0 6px 0;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .detail-box h3 {
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container Daftar Bar Harga */
+        .container-harga {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        /* Desain Bar List Item Bergaya Gelap Modern */
+        .bar-harga {
+            background-color: #161822;
+            border: 1px solid #232635;
+            padding: 14px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .bar-harga:active {
+            border-color: #bd1cb8;
+            background-color: #1f1429;
+        }
+
+        .teks-durasi {
+            color: #a0a5b5;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .teks-harga {
+            color: #df42da;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .peringatan {
+            text-align: center;
+            color: #383a45;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 35px;
+        }
+
+        /* Tombol CS Bantuan Melayang di Pojok Kanan Bawah */
+        .btn-cs-bantuan {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Warna WhatsApp resmi */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+
+        .btn-cs-bantuan:active {
+            transform: scale(0.95);
+            background-color: #20ba59;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="menu-titik-tiga" onclick="toggleMenu()">&#8942;</div>
+        
+        <div class="dropdown-menu" id="myDropdown">
+            <a href="https://api.whatsapp.com/send?phone=6283879245790" target="_blank">💬 WHATSAPP</a>
+            <a href="https://t.me/SENNSTORE01" target="_blank">✈️ TELEGRAM</a>
+            <a href="https://chat.whatsapp.com/ExwscVzihNBB5yBafzw6Pb" target="_blank">👥 GRUP WHATSAPP</a>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h1>DAFTAR VIP <span>8 BALL POOL</span></h1>
+        <div class="fitur-tags">🚀 MURAH &nbsp; ⚡ CEPAT &nbsp; 🛡️ AMAN</div>
+        <div class="platform-tag">PLATFORM: ANDROID</div>
+    </div>
+
+    <div class="produk-container">
+
+        <div class="kartu-produk">
+            <div class="gambar-box" style="background: linear-gradient(to bottom, #442b1d, #12131a);">
+                <div class="badge-terlaris">🔥 TERLARIS</div>
+                <div class="bola-hitam">
+                    <div class="lingkaran-putih"><span class="angka-8">8</span></div>
+                </div>
+            </div>
+            <div class="detail-box">
+                <p class="tag-android">🤖 ANDROID</p>
+                <h3>KING OF SHOTS (BASIC)</h3>
+                
+                <div class="container-harga">
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(BASIC)%20-%201%20DAY." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 1 DAY</span>
+                        <span class="teks-harga">Rp25.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(BASIC)%20-%207%20DAY." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 7 DAY</span>
+                        <span class="teks-harga">Rp85.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(BASIC)%20-%2015%20DAY." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 15 DAY</span>
+                        <span class="teks-harga">Rp130.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(BASIC)%20-%2030%20DAY." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 30 DAY</span>
+                        <span class="teks-harga">Rp240.000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="kartu-produk">
+            <div class="gambar-box" style="background: linear-gradient(to bottom, #4a0d0d, #12131a);">
+                <div class="badge-terlaris">🔥 TERLARIS</div>
+                <div class="bola-hitam">
+                    <div class="lingkaran-putih"><span class="angka-8">8</span></div>
+                </div>
+            </div>
+            <div class="detail-box">
+                <p class="tag-android">🤖 ANDROID</p>
+                <h3>KING OF SHOTS (MOD)</h3>
+                
+                <div class="container-harga">
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(MOD)%20-%201%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 1 HARI</span>
+                        <span class="teks-harga">Rp30.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(MOD)%20-%207%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 7 HARI</span>
+                        <span class="teks-harga">Rp70.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(MOD)%20-%2015%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 15 HARI</span>
+                        <span class="teks-harga">Rp130.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(MOD)%20-%2030%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 30 HARI</span>
+                        <span class="teks-harga">Rp240.000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="kartu-produk">
+            <div class="gambar-box" style="background: linear-gradient(to bottom, #423d11, #12131a);">
+                <div class="badge-terlaris">🔥 TERLARIS</div>
+                <div class="bola-hitam">
+                    <div class="lingkaran-putih"><span class="angka-8">8</span></div>
+                </div>
+            </div>
+            <div class="detail-box">
+                <p class="tag-android">🤖 ANDROID</p>
+                <h3>KING OF SHOTS (PREMIUM)</h3>
+                
+                <div class="container-harga">
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(PREMIUM)%20-%201%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 1 HARI</span>
+                        <span class="teks-harga">Rp35.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(PREMIUM)%20-%207%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 7 HARI</span>
+                        <span class="teks-harga">Rp100.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(PREMIUM)%20-%2015%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 15 HARI</span>
+                        <span class="teks-harga">Rp180.000</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo%20PentaMarket,%20saya%20ingin%20membeli%20KING%20OF%20SHOTS%20(PREMIUM)%20-%2030%20HARI." target="_blank" class="bar-harga">
+                        <span class="teks-durasi">🛒 30 HARI</span>
+                        <span class="teks-harga">Rp300.000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="peringatan">©2026 SENN X STORE
+
+    <a href="https://api.whatsapp.com/send?phone=6283879245790&text=Halo,%20saya%20butuh%20bantuan%20mengenai%20VIP%208%20Ball%20Pool." target="_blank" class="btn-cs-bantuan">
+        💬 CS BANTUAN
+    </a>
+
+    <script>
+        function toggleMenu() {
+            var dropdown = document.getElementById("myDropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+
+        // Menutup dropdown jika pengguna mengklik di luar area menu
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-titik-tiga')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
